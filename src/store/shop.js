@@ -1,0 +1,86 @@
+import { create } from "zustand";
+import { persist } from "zustand/middleware";
+import { products } from "../data/products.js";
+
+export const useShop = create()(
+  persist(
+    (set, get) => ({
+      cart: [],
+      wishlist: [],
+
+      addToCart: (product, opts = {}) =>
+        set((state) => {
+          const qty = opts.quantity ?? 1;
+
+          const existing = state.cart.find(
+            (item) =>
+              item.product.id === product.id &&
+              item.size === opts.size &&
+              item.flavor === opts.flavor
+          );
+
+          if (existing) {
+            return {
+              cart: state.cart.map((item) =>
+                item === existing
+                  ? { ...item, quantity: item.quantity + qty }
+                  : item
+              ),
+            };
+          }
+
+          return {
+            cart: [
+              ...state.cart,
+              {
+                product,
+                quantity: qty,
+                ...opts,
+              },
+            ],
+          };
+        }),
+
+      removeFromCart: (id) =>
+        set((state) => ({
+          cart: state.cart.filter((item) => item.product.id !== id),
+        })),
+
+      updateQuantity: (id, quantity) =>
+        set((state) => ({
+          cart: state.cart
+            .map((item) =>
+              item.product.id === id
+                ? {
+                    ...item,
+                    quantity: Math.max(0, quantity),
+                  }
+                : item
+            )
+            .filter((item) => item.quantity > 0),
+        })),
+
+      clearCart: () => set({ cart: [] }),
+
+      toggleWishlist: (id) =>
+        set((state) => ({
+          wishlist: state.wishlist.includes(id)
+            ? state.wishlist.filter((wishId) => wishId !== id)
+            : [...state.wishlist, id],
+        })),
+
+      isWishlisted: (id) => get().wishlist.includes(id),
+    }),
+    {
+      name: "rose-shop",
+    }
+  )
+);
+
+export const cartCountSelector = (state) =>
+  state.cart.reduce((sum, item) => sum + item.quantity, 0);
+
+export const cartTotalSelector = (state) =>
+  state.cart.reduce(
+    (sum, item) =>
+      sum + (item.product.discountedPrice ?? item.product.price) * item.quantity, 0);
