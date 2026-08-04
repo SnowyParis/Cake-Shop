@@ -1,8 +1,8 @@
-import { useMemo, useState } from "react";
-import { useSearchParams } from "react-router-dom";
-import { Search, SlidersHorizontal } from "lucide-react";
 import { products, categories } from "../data/products.js";
+import { Search, SlidersHorizontal } from "lucide-react";
+import { useSearchParams } from "react-router-dom";
 import { ProductCard } from "./ProductCard.jsx";
+import { useMemo, useState } from "react";
 
 const sortOptions = [
   { value: "popular", label: "Popularity" },
@@ -117,16 +117,16 @@ function Shop() {
                   All
                 </button>
 
-                {categories.map((c) => (
+                {categories.map((cat) => (
                   <button
-                    key={c.slug}
+                    key={cat.slug}
                     onClick={() => {
-                      setCategory(c.slug);
+                      setCategory(cat.slug);
                       setPage(1);
                     }}
-                    className={`w-full text-left rounded-full px-3 py-1.5 text-sm transition ${category === c.slug ? "bg-primary text-primary-foreground" : "hover:bg-secondary/60 text-foreground/80"}`}
+                    className={`w-full text-left rounded-full px-3 py-1.5 text-sm transition ${category === cat.slug ? "bg-primary text-primary-foreground" : "hover:bg-secondary/60 text-foreground/80"}`}
                   >
-                    {c.name}
+                    {cat.name}
                   </button>
                 ))}
               </div>
@@ -152,18 +152,18 @@ function Shop() {
               </label>
 
               <div className="mt-2 flex gap-1">
-                {[0, 3, 4, 4.5].map((r) => (
+                {[0, 3, 4, 4.5].map((rate) => (
                   <button
-                    key={r}
-                    onClick={() => setMinRating(r)}
+                    key={rate}
+                    onClick={() => setMinRating(rate)}
                     className={`flex-1 rounded-full border px-2 py-1.5 text-xs font-medium transition",
                       ${
-                        minRating === r
+                        minRating === rate
                           ? "bg-primary text-primary-foreground border-primary"
                           : "border-border hover:bg-secondary/60"
                       }`}
                   >
-                    {r === 0 ? "Any" : `${r}+★`}
+                    {rate === 0 ? "Any" : `${rate}+★`}
                   </button>
                 ))}
               </div>
@@ -184,9 +184,9 @@ function Shop() {
               onChange={(e) => setSort(e.target.value)}
               className="rounded-full border border-input bg-background px-4 py-2 text-sm outline-none focus:ring-2 focus:ring-ring"
             >
-              {sortOptions.map((o) => (
-                <option key={o.value} value={o.value}>
-                  Sort by: {o.label}
+              {sortOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  Sort by: {option.label}
                 </option>
               ))}
             </select>
@@ -204,26 +204,26 @@ function Shop() {
             </div>
           ) : (
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {paginated.map((p, i) => (
-                <ProductCard key={p.id} product={p} index={i} />
+              {paginated.map((page, index) => (
+                <ProductCard key={page.id} product={page} index={index} />
               ))}
             </div>
           )}
 
           {totalPages > 1 && (
             <div className="mt-10 flex justify-center gap-2">
-              {Array.from({ length: totalPages }).map((_, i) => (
+              {Array.from({ length: totalPages }).map((_, index) => (
                 <button
-                  key={i}
-                  onClick={() => setPage(i + 1)}
+                  key={index}
+                  onClick={() => setPage(index + 1)}
                   className={`h-10 w-10 rounded-full text-sm font-medium transition
                     ${
-                      page === i + 1
+                      page === index + 1
                         ? "gradient-rose text-white shadow-soft"
                         : "bg-card hover:bg-secondary/60"
                     }`}
                 >
-                  {i + 1}
+                  {index + 1}
                 </button>
               ))}
             </div>

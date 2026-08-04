@@ -15,7 +15,7 @@ const contactInfo = [
   {
     icon: Mail,
     title: "Email",
-    body: "hello@rosebakery.com",
+    body: "hello@sweetnothingsbakery.com",
   },
   {
     icon: Clock,
@@ -140,15 +140,6 @@ function Contact() {
               </div>
             </div>
           ))}
-
-          {/* <div className="rounded-3xl overflow-hidden shadow-soft aspect-video bg-secondary/40">
-            <iframe
-              title="Rosé Bakery location"
-              src="https://www.openstreetmap.org/export/embed.html?bbox=-122.42%2C37.78%2C-122.40%2C37.80&layer=mapnik"
-              className="w-full h-full border-0"
-              loading="lazy"
-            />
-          </div> */}
         </div>
       </div>
     </div>

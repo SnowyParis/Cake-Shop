@@ -1,6 +1,6 @@
-import { create } from "zustand";
-import { persist } from "zustand/middleware";
 import { products } from "../data/products.js";
+import { persist } from "zustand/middleware";
+import { create } from "zustand";
 
 export const useShop = create()(
   persist(
@@ -16,7 +16,7 @@ export const useShop = create()(
             (item) =>
               item.product.id === product.id &&
               item.size === opts.size &&
-              item.flavor === opts.flavor
+              item.flavor === opts.flavor,
           );
 
           if (existing) {
@@ -24,7 +24,7 @@ export const useShop = create()(
               cart: state.cart.map((item) =>
                 item === existing
                   ? { ...item, quantity: item.quantity + qty }
-                  : item
+                  : item,
               ),
             };
           }
@@ -55,7 +55,7 @@ export const useShop = create()(
                     ...item,
                     quantity: Math.max(0, quantity),
                   }
-                : item
+                : item,
             )
             .filter((item) => item.quantity > 0),
         })),
@@ -72,9 +72,9 @@ export const useShop = create()(
       isWishlisted: (id) => get().wishlist.includes(id),
     }),
     {
-      name: "rose-shop",
-    }
-  )
+      name: "sweet-nothings-shop",
+    },
+  ),
 );
 
 export const cartCountSelector = (state) =>
@@ -83,4 +83,7 @@ export const cartCountSelector = (state) =>
 export const cartTotalSelector = (state) =>
   state.cart.reduce(
     (sum, item) =>
-      sum + (item.product.discountedPrice ?? item.product.price) * item.quantity, 0);
+      sum +
+      (item.product.discountedPrice ?? item.product.price) * item.quantity,
+    0,
+  );

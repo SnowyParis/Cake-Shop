@@ -23,12 +23,8 @@ function Navbar() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-18 items-center justify-between py-4">
           <Link to="/" className="flex items-center gap-2">
-            <div className="grid h-9 w-9 place-items-center rounded-full gradient-rose text-white font-display text-lg">
-              R
-            </div>
-
-            <span className="font-display text-2xl font-semibold tracking-tight">
-              Rosé
+            <span className="font-display text-2xl text-gradient italic font-semibold tracking-tight">
+              Sweet Nothings
             </span>
           </Link>
 
@@ -73,7 +69,7 @@ function Navbar() {
               className="relative grid h-10 w-10 place-items-center rounded-full text-foreground/70 hover:bg-secondary/60 hover:text-primary transition"
             >
               <Heart className="h-5 w-5" />
-              
+
               {/* the pink counter on the top right corner */}
               {wishlistCount > 0 && (
                 <span className="absolute -top-0.5 -right-0.5 grid h-5 w-5 place-items-center rounded-full bg-primary text-[10px] font-bold text-primary-foreground">
@@ -109,11 +105,7 @@ function Navbar() {
               onClick={() => setOpen((prev) => !prev)}
               className="lg:hidden grid h-10 w-10 place-items-center rounded-full text-foreground/70 hover:bg-secondary/60"
             >
-              {open ? (
-                <X className="h-5 w-5" />
-              ) : (
-                <Menu className="h-5 w-5" />
-              )}
+              {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
           </div>
         </div>

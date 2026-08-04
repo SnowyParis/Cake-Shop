@@ -1,13 +1,11 @@
-import { Link } from "react-router-dom";
 import { Heart, Star } from "lucide-react";
-import { motion } from "motion/react";
 import { useShop } from "../store/shop.js";
+import { Link } from "react-router-dom";
+import { motion } from "motion/react";
 
 export function ProductCard({ product, index = 0 }) {
-  const isWishlisted = useShop((state) =>
-    state.wishlist.includes(product.id)
-  );
-  
+  const isWishlisted = useShop((state) => state.wishlist.includes(product.id));
+
   const toggleWishlist = useShop((state) => state.toggleWishlist);
   const addToCart = useShop((state) => state.addToCart);
 
@@ -52,17 +50,13 @@ export function ProductCard({ product, index = 0 }) {
         aria-label={isWishlisted ? "Remove from wishlist" : "Add to wishlist"}
         className={`absolute top-3 right-3 grid h-9 w-9 place-items-center rounded-full glass transition ${isWishlisted ? "text-primary" : "text-foreground/70 hover:text-primary"}`}
       >
-        <Heart
-          className={`h-4 w-4 ${isWishlisted && "fill-current"}`}
-        />
+        <Heart className={`h-4 w-4 ${isWishlisted && "fill-current"}`} />
       </button>
 
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center gap-1 text-xs text-muted-foreground">
           <Star className="h-3.5 w-3.5 fill-accent text-accent" />
-          <span className="font-medium text-foreground">
-            {product.rating}
-          </span>
+          <span className="font-medium text-foreground">{product.rating}</span>
           <span>({product.reviews})</span>
         </div>
 
@@ -78,15 +72,15 @@ export function ProductCard({ product, index = 0 }) {
             {product.discountedPrice ? (
               <div className="flex items-baseline gap-2">
                 <span className="text-lg font-semibold text-primary">
-                  ${product.discountedPrice.toFixed(2)}
+                  R{product.discountedPrice.toFixed(2)}
                 </span>
                 <span className="text-sm text-muted-foreground line-through">
-                  ${product.price.toFixed(2)}
+                  R{product.price.toFixed(2)}
                 </span>
               </div>
             ) : (
               <span className="text-lg font-semibold">
-                ${product.price.toFixed(2)}
+                R{product.price.toFixed(2)}
               </span>
             )}
           </div>

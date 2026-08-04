@@ -1,7 +1,7 @@
-import { motion } from "motion/react";
 import { galleryImages } from "../data/products.js";
 import heroCake from "../assets/hero-cake.jpg";
 import donuts from "../assets/donuts.jpg";
+import { motion } from "motion/react";
 
 const bakers = [
   {
@@ -36,7 +36,7 @@ function About() {
             </h1>
 
             <p className="mt-6 text-lg text-muted-foreground">
-              Rosé began in 2012 as a home kitchen experiment — one
+              Sweet Nothings began in 2012 as a home kitchen experiment — one
               grandmother's recipe, two hands, and a stubborn belief that a cake
               could hold a memory forever. Twelve years later, we still bake the
               same way: slowly, by hand, with the finest ingredients we can
@@ -51,7 +51,7 @@ function About() {
           >
             <img
               src={donuts}
-              alt="Signature Rosé donuts"
+              alt="Signature Sweet Nothings donuts"
               className="h-full w-full object-cover"
             />
           </motion.div>
@@ -73,13 +73,13 @@ function About() {
               title: "Our Promise",
               body: "Baked the day it's delivered. If you're not delighted, we'll make it right — always.",
             },
-          ].map((a, i) => (
+          ].map((a, index) => (
             <motion.div
               key={a.title}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: index * 0.1 }}
               className="rounded-3xl bg-card p-8 shadow-soft"
             >
               <h3 className="font-display text-2xl">{a.title}</h3>
@@ -95,26 +95,26 @@ function About() {
         </h2>
 
         <div className="mt-12 grid gap-8 md:grid-cols-3">
-          {bakers.map((b, i) => (
+          {bakers.map((baker, index) => (
             <motion.div
-              key={b.name}
+              key={baker.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1 }}
+              transition={{ delay: index * 0.1 }}
               className="text-center"
             >
               <div className="aspect-square rounded-3xl overflow-hidden bg-secondary/30 mb-4">
                 <img
                   //we use i + 1 to get the current image since the image in the first index of galleryImages is the hero image
-                  src={galleryImages[i + 1]}
-                  alt={b.name}
+                  src={galleryImages[index + 1]}
+                  alt={baker.name}
                   className="h-full w-full object-cover"
                 />
               </div>
-              <h3 className="font-display text-2xl">{b.name}</h3>
-              <div className="text-sm text-primary font-medium">{b.role}</div>
-              <p className="mt-2 text-sm text-muted-foreground">{b.bio}</p>
+              <h3 className="font-display text-2xl">{baker.name}</h3>
+              <div className="text-sm text-primary font-medium">{baker.role}</div>
+              <p className="mt-2 text-sm text-muted-foreground">{baker.bio}</p>
             </motion.div>
           ))}
         </div>
@@ -125,14 +125,14 @@ function About() {
           Inside our kitchen
         </h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {galleryImages.map((img, i) => (
+          {galleryImages.map((img, index) => (
             <div
-              key={i}
-              className={`aspect-square rounded-2xl overflow-hidden ${i % 3 === 0 ? "row-span-2 md:aspect-1/2" : ""}`}
+              key={index}
+              className={`aspect-square rounded-2xl overflow-hidden ${index % 3 === 0 ? "row-span-2 md:aspect-1/2" : ""}`}
             >
               <img
                 src={img}
-                alt={`Kitchen ${i + 1}`}
+                alt={`Kitchen ${index + 1}`}
                 loading="lazy"
                 className="h-full w-full object-cover"
               />
