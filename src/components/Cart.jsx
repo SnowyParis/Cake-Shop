@@ -13,7 +13,7 @@ function Cart() {
 
   const delivery = subtotal > 0 ? (subtotal > 80 ? 0 : 8) : 0;
   const giftFee = gift ? 5 : 0;
-  const tax = Math.round(subtotal * 0.08 * 100) / 100;
+  const tax = Math.round(subtotal * 0.15 * 100) / 100;
   const total = subtotal + delivery + giftFee + tax;
 
   if (cart.length === 0) {
@@ -45,27 +45,28 @@ function Cart() {
       <div className="mt-10 grid gap-8 lg:grid-cols-[1fr_400px]">
         <div className="space-y-4">
           {cart.map((item) => {
-            const p = item.product;
-            const price = p.discountedPrice ?? p.price;
+            const product = item.product;
+            const price = product.discountedPrice ?? product.price; //discounted price or original price
+            
             return (
               <div
-                key={p.id + (item.size ?? "") + (item.flavor ?? "")}
+                key={product.id + (item.size ?? "") + (item.flavor ?? "")}
                 className="rounded-3xl bg-card p-4 shadow-soft grid grid-cols-[100px_1fr] sm:grid-cols-[120px_1fr_auto] gap-4 items-center"
               >
                 <div className="aspect-square rounded-2xl overflow-hidden bg-secondary/30">
                   <img
-                    src={p.image}
-                    alt={p.name}
+                    src={product.image}
+                    alt={product.name}
                     className="h-full w-full object-cover"
                   />
                 </div>
 
                 <div className="min-w-0">
                   <Link
-                    to={`/product/${p.slug}`}
+                    to={`/product/${product.slug}`}
                     className="font-display text-lg hover:text-primary line-clamp-1"
                   >
-                    {p.name}
+                    {product.name}
                   </Link>
 
                   <div className="text-xs text-muted-foreground mt-1">
@@ -78,6 +79,7 @@ function Cart() {
                       "{item.message}"
                     </div>
                   )}
+
                   <div className="mt-2 font-semibold">
                     R{(price * item.quantity).toFixed(2)}
                   </div>
@@ -86,17 +88,19 @@ function Cart() {
                 <div className="col-span-2 sm:col-span-1 flex items-center justify-between sm:justify-end gap-3">
                   <div className="flex items-center rounded-full border border-input bg-background">
                     <button
-                      onClick={() => updateQuantity(p.id, item.quantity - 1)}
+                      onClick={() => updateQuantity(product.id, item.quantity - 1)}
                       aria-label="Decrease"
                       className="grid h-9 w-9 place-items-center hover:bg-secondary/60 rounded-l-full"
                     >
                       <Minus className="h-3.5 w-3.5" />
                     </button>
+
                     <span className="w-8 text-center text-sm font-medium">
                       {item.quantity}
                     </span>
+
                     <button
-                      onClick={() => updateQuantity(p.id, item.quantity + 1)}
+                      onClick={() => updateQuantity(product.id, item.quantity + 1)}
                       aria-label="Increase"
                       className="grid h-9 w-9 place-items-center hover:bg-secondary/60 rounded-r-full"
                     >
@@ -105,7 +109,7 @@ function Cart() {
                   </div>
 
                   <button
-                    onClick={() => removeFromCart(p.id)}
+                    onClick={() => removeFromCart(product.id)}
                     aria-label="Remove"
                     className="grid h-9 w-9 place-items-center rounded-full hover:bg-danger/10 text-muted-foreground hover:text-danger"
                   >
@@ -123,6 +127,7 @@ function Cart() {
           <div className="mt-4 flex gap-2">
             <div className="relative flex-1">
               <Tag className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              
               <input
                 value={coupon}
                 onChange={(e) => setCoupon(e.target.value)}
@@ -148,17 +153,20 @@ function Cart() {
 
           <dl className="mt-5 space-y-2 text-sm">
             <Row label="Subtotal" value={subtotal} />
+
             <Row
               label="Delivery"
               value={delivery}
               note={delivery === 0 && subtotal > 0 ? "Free" : undefined}
             />
+            
             {gift && <Row label="Gift wrap" value={giftFee} />}
             <Row label="Tax" value={tax} />
           </dl>
 
           <div className="mt-4 pt-4 border-t border-border/60 flex items-baseline justify-between">
             <span className="font-semibold">Total</span>
+            
             <span className="font-display text-2xl text-gradient">
               R{total.toFixed(2)}
             </span>

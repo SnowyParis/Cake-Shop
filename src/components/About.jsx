@@ -5,17 +5,17 @@ import { motion } from "motion/react";
 
 const bakers = [
   {
-    name: "Amélie Rousseau",
+    name: "Amy Rousseau",
     role: "Head Pastry Chef",
     bio: "Trained at Le Cordon Bleu. 15 years crafting cakes for weddings and royalty.",
   },
   {
-    name: "Marco Bianchi",
+    name: "Karabo Mokoena",
     role: "Chocolatier",
-    bio: "Fourth-generation chocolatier from Turin. Obsessed with single-origin cocoa.",
+    bio: "Chocolatier from the North West. Obsessed with single-origin cocoa.",
   },
   {
-    name: "Yuki Tanaka",
+    name: "Sandisiwe Nyawu",
     role: "Cake Artist",
     bio: "Sugar-flower specialist. Her petal work has been featured in Vogue Weddings.",
   },
@@ -106,7 +106,8 @@ function About() {
             >
               <div className="aspect-square rounded-3xl overflow-hidden bg-secondary/30 mb-4">
                 <img
-                  //we use i + 1 to get the current image since the image in the first index of galleryImages is the hero image
+                  //we use i + 1 to get the current image since the image in the first index of 
+                  //galleryImages is the hero image
                   src={galleryImages[index + 1]}
                   alt={baker.name}
                   className="h-full w-full object-cover"

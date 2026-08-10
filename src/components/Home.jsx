@@ -37,11 +37,21 @@ function Home() {
               storybook weddings — every Sweet Nothings cake is a signature
               centerpiece.
             </p>
-            
+
             <div className="mt-8 flex flex-wrap gap-3">
-              <a className="inline-flex items-center gap-2 rounded-full gradient-rose px-7 py-3.5 text-sm font-semibold text-white shadow-glow hover:-translate-y-0.5 transition">
+              <Link
+                to="/shop"
+                className="inline-flex items-center gap-2 rounded-full gradient-rose px-7 py-3.5 text-[1rem] font-semibold text-white shadow-glow hover:-translate-y-0.5 transition"
+              >
                 Shop cakes <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
+
+              <Link
+                to="/order"
+                className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-background px-7 py-3.5 text-[1rem] font-semibold hover:bg-primary/5 transition"
+              >
+                Design your own
+              </Link>
             </div>
           </div>
 
@@ -79,7 +89,9 @@ function Home() {
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
                 />
+
                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent" />
+
                 <div className="absolute bottom-4 left-4 right-4">
                   <h3 className="font-display text-lg text-white leading-tight">
                     {cat.name}
@@ -135,19 +147,23 @@ function Home() {
               </div>
             ))}
           </div>
+
           <div>
             <span className="text-sm font-medium text-primary tracking-widest uppercase">
               Our story
             </span>
+
             <h2 className="mt-3 font-display text-4xl md:text-5xl">
               A love letter to celebration
             </h2>
+
             <p className="mt-5 text-muted-foreground text-lg">
               Sweet Nothings began in a small kitchen with one belief: that a
               cake can hold a memory forever. Today, our team of pastry artists
               still bakes every cake by hand, using only the finest butter,
               single-origin chocolate, and heirloom fruit.
             </p>
+
             <Link
               to="/about"
               className="mt-6 inline-flex items-center gap-2 text-primary font-medium hover:gap-3 transition-all"
@@ -164,9 +180,9 @@ function Home() {
         subtitle="From customers who trusted us with their moments"
       >
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-          {testimonials.map((testimonial, index) => (
+          {testimonials.map((test, index) => (
             <motion.div
-              key={testimonial.name}
+              key={test.name}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -174,16 +190,22 @@ function Home() {
               className="rounded-3xl bg-card p-6 shadow-soft"
             >
               <div className="flex gap-0.5 text-accent mb-3">
-                {Array.from({ length: testimonial.rating }).map((_, index) => (
-                  <span key={index}>★</span>
-                ))}
+                {Array.from({ length: test.rating }).map(
+                  (
+                    _,
+                    index, //prints length stars
+                  ) => (
+                    <span key={index}>★</span>
+                  ),
+                )}
               </div>
-              <p className="text-sm leading-relaxed">"{testimonial.quote}"</p>
+
+              <p className="text-sm leading-relaxed">"{test.quote}"</p>
+
               <div className="mt-5 pt-5 border-t border-border/60">
-                <div className="font-semibold text-sm">{testimonial.name}</div>
-                <div className="text-xs text-muted-foreground">
-                  {testimonial.role}
-                </div>
+                <div className="font-semibold text-sm">{test.name}</div>
+
+                <div className="text-xs text-muted-foreground">{test.role}</div>
               </div>
             </motion.div>
           ))}
@@ -212,6 +234,7 @@ function Home() {
                 loading="lazy"
                 className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110"
               />
+
               <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition" />
             </motion.a>
           ))}
@@ -230,6 +253,7 @@ function Section({ title, subtitle, children }) {
           {subtitle && <p className="mt-2 text-muted-foreground">{subtitle}</p>}
         </div>
       </div>
+
       {children}
     </section>
   );

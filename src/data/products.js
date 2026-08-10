@@ -1,22 +1,27 @@
+import rainbow_cupcakes from "../assets/cake-cupcakes.jpg";
 import strawberry from "../assets/cake-strawberry.jpg";
 import cheesecake from "../assets/cake-cheesecake.jpg";
 import redvelvet from "../assets/cake-redvelvet.jpg";
 import chocolate from "../assets/cake-chocolate.jpg";
-import cupcakes from "../assets/cake-cupcakes.jpg";
 import vanilla from "../assets/cake-vanilla.jpg";
 import rainbow from "../assets/cake-rainbow.jpg";
+import cupcakes from "../assets/cupcakes.jpg";
+import biscuits from "../assets/biscuits.jpg";
+import lemon from "../assets/cake-lemon.jpg";
 import hero from "../assets/hero-cake.jpg";
 import donuts from "../assets/donuts.jpg";
 
 export const categories = [
   { slug: "birthday", name: "Birthday Cakes", image: rainbow },
   { slug: "wedding", name: "Wedding Cakes", image: vanilla },
-  { slug: "cupcakes", name: "Cupcakes", image: cupcakes },
+  { slug: "cupcakes", name: "Cupcakes", image: rainbow_cupcakes },
   { slug: "cheesecakes", name: "Cheesecakes", image: cheesecake },
   { slug: "chocolate", name: "Chocolate Cakes", image: chocolate },
+  { slug: "lemon", name: "Lemon Cakes", image: lemon },
   { slug: "fruit", name: "Fruit Cakes", image: strawberry },
   { slug: "kids", name: "Kids Cakes", image: rainbow },
   { slug: "donuts", name: "Donuts", image: donuts },
+  { slug: "biscuits", name: "Biscuits", image: biscuits },
   { slug: "vegan", name: "Vegan Cakes", image: redvelvet },
   { slug: "gluten-free", name: "Gluten-Free", image: strawberry },
   { slug: "anniversary", name: "Anniversary", image: redvelvet },
@@ -34,6 +39,7 @@ const images = [
   redvelvet,
   hero,
   donuts,
+  biscuits,
 ];
 
 const names = [
@@ -92,10 +98,13 @@ const names = [
 const cats = [
   "birthday",
   "chocolate",
+  "lemon",
   "fruit",
   "wedding",
   "cupcakes",
   "cheesecakes",
+  "donuts",
+  "biscuits",
   "vegan",
   "gluten-free",
   "anniversary",
@@ -123,10 +132,10 @@ const flavors = [
 ];
 
 const sizes = [
-  '6" (serves 4-6)',
-  '8" (serves 8-10)',
-  '10" (serves 12-15)',
-  '12" (serves 20-24)',
+  '15cm (serves 4-6)',
+  '20cm (serves 8-10)',
+  '25cm (serves 12-15)',
+  '30cm (serves 20-24)',
 ];
 
 const allIngredients = [
@@ -139,6 +148,7 @@ const allIngredients = [
   "Cream",
   "Milk",
   "Berries",
+  "Lemon juice",
   "Chocolate",
   "Almonds",
   "Coconut",
@@ -212,10 +222,13 @@ export const galleryImages = [
   hero,
   chocolate,
   strawberry,
+  lemon,
   vanilla,
+  rainbow_cupcakes,
   cupcakes,
   cheesecake,
   rainbow,
   redvelvet,
   donuts,
+  biscuits,
 ];

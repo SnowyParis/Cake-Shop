@@ -32,6 +32,10 @@ const contactInfo = [
   },
 ];
 
+const inputClassName =
+  "w-full rounded-full border border-input bg-background px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring";
+const labelClassName = "block text-[1rem] font-semibold mb-1.5";
+
 function Contact() {
   const [sent, setSent] = useState(false);
 
@@ -39,6 +43,7 @@ function Contact() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
       <div className="text-center mb-12">
         <h1 className="font-display text-4xl md:text-6xl">Say hello</h1>
+
         <p className="mt-2 text-muted-foreground">
           We'd love to hear about your celebration.
         </p>
@@ -47,10 +52,12 @@ function Contact() {
       <div className="grid gap-10 lg:grid-cols-2">
         <div className="rounded-3xl bg-card p-8 shadow-soft">
           <h2 className="font-display text-[1.7rem] mb-6">Send us a message</h2>
+
           {sent ? (
             <div className="rounded-2xl bg-primary/10 p-6 text-center">
               <div className="text-3xl mb-2">💌</div>
               <div className="font-semibold">Thank you!</div>
+
               <p className="text-sm text-muted-foreground mt-1">
                 We'll be in touch within one business day.
               </p>
@@ -65,50 +72,32 @@ function Contact() {
             >
               <div className="grid gap-4 sm:grid-cols-2">
                 <div>
-                  <label
-                    for="name"
-                    className="block text-[1rem] font-semibold mb-1.5"
-                  >
+                  <label for="name" className={labelClassName}>
                     Name
                   </label>
-                  <input
-                    required
-                    className="w-full rounded-full border border-input bg-background px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
-                  />
+
+                  <input required className={inputClassName} />
                 </div>
 
                 <div>
-                  <label
-                    for="email"
-                    className="block text-[1rem] font-semibold mb-1.5"
-                  >
+                  <label for="email" className={labelClassName}>
                     Email
                   </label>
-                  <input
-                    required
-                    type="email"
-                    className="w-full rounded-full border border-input bg-background px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
-                  />
+
+                  <input required type="email" className={inputClassName} />
                 </div>
               </div>
 
-              <label
-                for="subject"
-                className="block text-[1rem] font-semibold mb-1.5"
-              >
+              <label for="subject" className={labelClassName}>
                 Subject
               </label>
-              <input
-                required
-                className="w-full rounded-full border border-input bg-background px-4 py-2.5 text-sm outline-none focus:ring-2 focus:ring-ring"
-              />
 
-              <label
-                for="message"
-                className="block text-[1rem] font-semibold mb-1.5"
-              >
+              <input required className={inputClassName} />
+
+              <label for="message" className={labelClassName}>
                 Message
               </label>
+
               <textarea
                 required
                 rows="3"
@@ -134,6 +123,7 @@ function Contact() {
 
               <div>
                 <div className="font-semibold">{info.title}</div>
+
                 <div className="text-sm text-muted-foreground mt-0.5">
                   {info.body}
                 </div>

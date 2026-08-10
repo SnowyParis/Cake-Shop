@@ -7,8 +7,9 @@ function Categories() {
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
       <div className="text-center mb-12">
         <h1 className="font-display text-4xl md:text-6xl">
-          Every occasion, a cake
+          A cake for every occasion
         </h1>
+
         <p className="mt-3 text-muted-foreground max-w-xl mx-auto">
           From storybook weddings to Saturday afternoons — we bake for every
           moment.
@@ -25,7 +26,7 @@ function Categories() {
             transition={{ delay: index * 0.04 }}
           >
             <Link
-              to={`/shop?category=${cat.slug}`}
+              to={`/shop?category=${cat.slug}`} //takes us to e.g. shop with search category=cupcakes
               className="group relative block aspect-[4/5] overflow-hidden rounded-3xl shadow-soft hover:shadow-glow transition"
             >
               <img
