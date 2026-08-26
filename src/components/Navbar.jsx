@@ -112,6 +112,7 @@ function Navbar() {
         </div>
       </div>
 
+      {/* the dropdown navbar on smaller screens */}
       <AnimatePresence>
         {open && (
           <motion.div

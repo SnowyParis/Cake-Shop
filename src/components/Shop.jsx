@@ -90,6 +90,7 @@ function Shop() {
 
             <div className="relative">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              
               <input
                 value={q}
                 onChange={(e) => {
@@ -136,6 +137,7 @@ function Shop() {
               <label className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                 Max price: ${maxPrice}
               </label>
+
               <input
                 type="range"
                 min={20}
@@ -212,7 +214,7 @@ function Shop() {
 
           {totalPages > 1 && (
             <div className="mt-10 flex justify-center gap-2">
-              {Array.from({ length: totalPages }).map((_, index) => (
+              {Array.from({ length: totalPages }).map((_, index) => ( //the array loops a length number of times
                 <button
                   key={index}
                   onClick={() => setPage(index + 1)}

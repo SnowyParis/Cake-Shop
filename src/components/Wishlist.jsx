@@ -5,7 +5,9 @@ import { Link } from "react-router-dom";
 
 function Wishlist() {
   const wishlist = useShop((state) => state.wishlist);
-  const items = products.filter((product) => wishlist.includes(product.id));
+  const wishlistItems = products.filter((product) =>
+    wishlist.includes(product.id),
+  ); //get the products that are on the wishlist
 
   return (
     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
@@ -15,7 +17,7 @@ function Wishlist() {
         Cakes you've saved for later.
       </p>
 
-      {items.length === 0 ? (
+      {wishlistItems.length === 0 ? (
         <div className="mt-16 text-center rounded-3xl border border-dashed p-16">
           <div className="text-5xl mb-3">💖</div>
 
@@ -34,7 +36,7 @@ function Wishlist() {
         </div>
       ) : (
         <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {items.map((product, index) => (
+          {wishlistItems.map((product, index) => (
             <ProductCard key={product.id} product={product} index={index} />
           ))}
         </div>

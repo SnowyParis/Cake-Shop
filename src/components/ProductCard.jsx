@@ -60,9 +60,11 @@ export function ProductCard({ product, index = 0 }) {
       <div className="flex flex-1 flex-col p-5">
         <div className="flex items-center gap-1 text-xs text-muted-foreground">
           <Star className="h-3.5 w-3.5 fill-accent text-accent" />
+
           <span className="font-medium text-foreground">
             {product.rating}
           </span>
+
           <span>({product.reviews})</span>
         </div>
 
@@ -80,6 +82,7 @@ export function ProductCard({ product, index = 0 }) {
                 <span className="text-lg font-semibold text-primary">
                   R{product.discountedPrice.toFixed(2)}
                 </span>
+                
                 <span className="text-sm text-muted-foreground line-through">
                   R{product.price.toFixed(2)}
                 </span>

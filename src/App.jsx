@@ -1,4 +1,5 @@
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import ProductDetails from "./components/ProductDetails.jsx";
 import Categories from "./components/Categories.jsx";
 import Wishlist from "./components/Wishlist.jsx";
 import Contact from "./components/Contact.jsx";
@@ -9,18 +10,17 @@ import Order from "./components/Order.jsx";
 import Home from "./components/Home.jsx";
 import Shop from "./components/Shop.jsx";
 import Cart from "./components/Cart.jsx";
-import { useState } from "react";
 import "./App.css";
 
 function App() {
   return (
     <>
       <Router>
-        
         <Navbar />
                 
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/product/:slug" element={<ProductDetails />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/shop" element={<Shop />} />

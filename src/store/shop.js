@@ -29,7 +29,7 @@ export const useShop = create()(
             };
           }
 
-          return {
+          return { //if the product does not already exist in the cart
             cart: [
               ...state.cart,
               {
@@ -46,14 +46,14 @@ export const useShop = create()(
           cart: state.cart.filter((item) => item.product.id !== id),
         })),
 
-      updateQuantity: (id, quantity) =>
+      updateQuantity: (id, quantity) => //product id & new quantity
         set((state) => ({
           cart: state.cart
             .map((item) =>
               item.product.id === id
                 ? {
                     ...item,
-                    quantity: Math.max(0, quantity),
+                    quantity: Math.max(0, quantity), //update quantity
                   }
                 : item,
             )
@@ -65,7 +65,7 @@ export const useShop = create()(
       toggleWishlist: (id) =>
         set((state) => ({
           wishlist: state.wishlist.includes(id)
-            ? state.wishlist.filter((wishId) => wishId !== id)
+            ? state.wishlist.filter((wishId) => wishId !== id) //filter out product with this id if its already on the wishlist, otherwise add it to the wishlist
             : [...state.wishlist, id],
         })),
 

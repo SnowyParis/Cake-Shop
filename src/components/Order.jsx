@@ -13,7 +13,9 @@ function Order() {
     email: "",
     phone: "",
     occasion: "",
+    shape: "",
     size: "",
+    layer: "",
     flavour: "",
     frosting: "",
     filling: "",
@@ -35,6 +37,14 @@ function Order() {
     { name: "30cm", price: 1300 },
   ];
 
+  const layers = [
+    { name: "Layers", price: 0 },
+    { name: "1", price: 40 },
+    { name: "2", price: 80 },
+    { name: "3", price: 120 },
+    { name: "4", price: 160 },
+  ];
+
   const toppers = [
     { name: "None", price: 0 },
     { name: "Candles", price: 20 },
@@ -51,10 +61,11 @@ function Order() {
 
   const total = useMemo(() => {
     const cake = sizes.find((a) => a.name === form.size);
+    const layer = layers.find((a) => a.name === form.layer);
     const topper = toppers.find((b) => b.name === form.topper);
 
     let price = cake?.price ?? 40;
-
+    price += layer?.price ?? 0;
     price += topper?.price ?? 0;
 
     if (form.delivery === "Delivery") {
@@ -62,12 +73,12 @@ function Order() {
     }
 
     return price;
-  }, [form]);
+  }, [form]); //when form elements change, useMemo() re-renders and total also changes
 
   return (
     <div className="mx-auto max-w-7xl px-6 py-12">
       <div className="mb-10 text-center">
-        <h1 className="text-5xl font-bold">Order Your Custom Cake</h1>
+        <h1 className="text-5xl font-display">Order Your Custom Cake</h1>
 
         <p className="mt-3 text-muted-foreground">
           Tell us exactly what you want and we'll bake it for your special day.
@@ -79,7 +90,7 @@ function Order() {
         <form className="space-y-8 rounded-3xl bg-card p-8 shadow-lg">
           {/* Customer Information */}
           <section>
-            <h2 className="mb-5 text-2xl font-semibold">
+            <h2 className="mb-5 text-2xl font-display">
               Customer Information
             </h2>
 
@@ -150,9 +161,28 @@ function Order() {
 
           {/* Cake Details */}
           <section>
-            <h2 className="mb-5 text-2xl font-semibold">Cake Details</h2>
+            <h2 className="mb-5 text-2xl font-display">Cake Details</h2>
 
-            <div className="grid gap-5 md:grid-cols-2">
+              <div className="grid gap-5 md:grid-cols-2">
+                <div>
+                <label for="shape" className={LabelClassName}>
+                  Cake shape
+                </label>
+
+                <select
+                required
+                  value={form.shape}
+                  onChange={(e) => update("shape", e.target.value)}
+                  className={InputClassName}
+                >
+                  <option value="">Shape</option>
+                  <option>Round</option>
+                  <option>Square</option>
+                  <option>Heart</option>
+                  <option>Number</option>
+                </select>
+              </div>
+
               <div>
                 <label for="size" className={LabelClassName}>
                   Cake size
@@ -164,11 +194,28 @@ function Order() {
                   onChange={(e) => update("size", e.target.value)}
                   className={InputClassName}
                 >
-                  <option value="">Size</option>
-
                   {sizes.map((size) => (
                     <option key={size.name} value={size.name}>
                       {size.name}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              <div>
+                <label for="layer" className={LabelClassName}>
+                  Cake layers
+                </label>
+
+                <select
+                required
+                  value={form.layer}
+                  onChange={(e) => update("layer", e.target.value)}
+                  className={InputClassName}
+                >
+                  {layers.map((layer) => (
+                    <option key={layer.name} value={layer.name}>
+                      {layer.name}
                     </option>
                   ))}
                 </select>
@@ -292,7 +339,7 @@ function Order() {
 
           {/* Event Details */}
           <section>
-            <h2 className="mb-5 text-2xl font-semibold">Event Details</h2>
+            <h2 className="mb-5 text-2xl font-display">Event Details</h2>
 
             <div className="space-y-5">
               <div>
@@ -340,7 +387,7 @@ function Order() {
 
           {/* Delivery */}
           <section>
-            <h2 className="mb-5 text-2xl font-semibold">Delivery</h2>
+            <h2 className="mb-5 text-2xl font-display">Delivery</h2>
 
             <div className="space-y-5">
               <select
@@ -386,12 +433,14 @@ function Order() {
             className="mb-6 aspect-square rounded-2xl object-cover"
           />
 
-          <h3 className="font-display text-xl mb-3 font-semibold">Your cake</h3>
+          <h3 className="font-display text-2xl mb-3 font-display">Your cake</h3>
 
           <div className="space-y-1 text-[1rem]">
             <Summary label="Name" item={form.name} />
             <Summary label="Occasion" item={form.occasion} />
+            <Summary label="Shape" item={form.shape} />
             <Summary label="Size" item={form.size} />
+            <Summary label="Layers" item={form.layer} />
             <Summary label="Flavour" item={form.flavour} />
             <Summary label="Frosting" item={form.frosting} />
             <Summary label="Filling" item={form.filling} />
