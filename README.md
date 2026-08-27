@@ -38,6 +38,19 @@ Each product has a dedicated details page containing:
 * Add to cart
 * Add to wishlist
 
+### 🖥️ Preview
+### Home Page
+![Home Page](screenshots/Home.png)
+<p align="center">
+  <img src="screenshots/Shop.png" width="45%" />
+  <img src="screenshots/ProductDetails.png" width="45%" />
+</p>
+<p align="center">
+  <img src="screenshots/Order.png" width="30%" />
+  <img src="screenshots/About.png" width="30%" />
+  <img src="screenshots/Contact.png" width="30%" />
+</p>
+
 ### 🧁 Custom Cake Order
 
 Customers can create a custom cake by selecting options such as:
